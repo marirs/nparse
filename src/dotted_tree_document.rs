@@ -7,9 +7,10 @@ pub(crate) fn parse_doted_tree(s: &str) -> Result<Value, String> {
 
     for line in BufReader::new(s.as_bytes()).lines() {
         if let Ok(line) = line {
-            let mut kv = line.splitn(2, ':');
-            let keys = kv.next().unwrap();
-            let v = json!(kv.next().unwrap());
+            let delim = if line.contains("=") { '=' } else { ':' };
+            let mut kv = line.splitn(2, delim);
+            let keys = kv.next().unwrap().trim();
+            let v = json!(kv.next().unwrap().trim());
             let mut splited_keys = keys.split('.');
             let mut entry = obj
                 .as_object_mut()
