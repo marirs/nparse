@@ -76,3 +76,34 @@ fn main () {
 ```
 
 ---
+
+## Tests, Build
+
+- Test
+```bash
+cargo t 
+```
+
+- Build Release
+```bash
+cargo b --release
+```
+
+## Examples
+
+- Parse dmidecode output to json
+```bash
+cargo run --example dmidecode
+```
+
+- Parse sysctl output to json
+```bash
+cargo run --example sysctl
+```
+
+- Parse lscpu to json
+```bash
+cargo run --example lscpu
+```
+
+---
