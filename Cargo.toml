@@ -1,14 +1,21 @@
 [package]
 name = "nparse"
 version = "0.0.2"
+description = "Parser in rust for specific use-cases"
 authors = ["Marirs <marirs@gmail.com"]
 categories = ["parser-implementations", "parsing"]
 exclude = [
     "data",
+    "examples",
     ".gitignore",
     ".idea",
-    ".travis"
+    ".travis.yml"
 ]
+keywords = ["parser", "nom", "indent", "kv", "key value", "string", "dmidecode", "lscpu", "sysctl"]
+readme = "README.md"
+license-file = "LICENSE"
+repository = "https://github.com/marirs/nparse"
+homepage = "https://github.com/marirs/nparse"
 edition = "2018"
 
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
@@ -20,3 +27,16 @@ serde_json = { version = "1.0", features = ["preserve_order"] }
 [lib]
 name = "nparse"
 path = "src/lib.rs"
+
+[badges]
+travis-ci = { repository = "marirs/nparse" }
+
+[profile.dev]
+opt-level = 3
+
+[profile.release]
+codegen-units = 1
+debug-assertions = false
+debug = false
+opt-level = 3
+lto = true
