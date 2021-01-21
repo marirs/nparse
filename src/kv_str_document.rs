@@ -20,7 +20,7 @@ named!(
         |mut v|
             json!(
                 v.drain(..)
-                    .map(|(k, v)| (k.to_string(), json!(v)))
+                    .map(|(k, v)| (k.to_string(), json!(v.trim())))
                     .collect::<serde_json::Map<_, _>>()
             )
     )
