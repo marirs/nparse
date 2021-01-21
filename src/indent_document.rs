@@ -1,13 +1,14 @@
 use serde_json::{json, Value};
 
 use nom::{
-    alt, call, complete, count, delimited, eof, many0, many1, map, named, named_args, opt,
-    pair, tag, take_until, terminated,
+    alt, call, char, complete, count, delimited, eof, many0, many1, map, named, named_args, opt,
+    pair, separated_pair, tag, take_till, take_till1,
+    terminated,
     character::complete::line_ending
 };
 
 named!(
-    pub parse_indent_document<&str, Value>,
+    pub(crate) parse_indent_string<&str, Value>,
     terminated!(
         map!(opt!(call!(parse_value_array, 0)), |v| v
             .unwrap_or_default()),
