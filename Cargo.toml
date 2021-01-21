@@ -3,7 +3,7 @@ name = "nparse"
 version = "0.0.2"
 description = "Parser in rust for specific use-cases"
 authors = ["Marirs <marirs@gmail.com>"]
-categories = ["parser-implementations", "parsing"]
+categories = ["parsing"]
 exclude = [
     "data",
     "examples",
