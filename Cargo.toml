@@ -10,7 +10,7 @@ exclude = [
     ".gitignore",
     ".travis.yml"
 ]
-keywords = ["parser", "nom", "indent", "kv", "key value", "string", "dmidecode", "lscpu", "sysctl"]
+keywords = ["parser", "nom", "indent", "kv", "string", "dmidecode", "lscpu", "sysctl"]
 readme = "README.md"
 license-file = "LICENSE"
 repository = "https://github.com/marirs/nparse"
