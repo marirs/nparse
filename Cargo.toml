@@ -1,6 +1,6 @@
 [package]
 name = "nparse"
-version = "0.0.2"
+version = "0.0.3"
 description = "Parser in rust for specific use-cases"
 authors = ["Marirs <marirs@gmail.com>"]
 categories = ["parsing"]
