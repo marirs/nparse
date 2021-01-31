@@ -1,5 +1,6 @@
 mod indent_document;
 mod kv_str_document;
+mod multiline_kv_str_document;
 mod dotted_tree_document;
 
 use serde_json::Value;
@@ -66,6 +67,39 @@ impl KVStrToJson for String {
         let doc = kv_str_document::parse_kv_str_string(&self);
         match doc {
             Ok(res) => Ok(res.1),
+            Err(e) => Err(e.to_string())
+        }
+    }
+}
+
+pub trait MultilineKVStrToJson {
+    fn multiline_kv_str_to_json(&self) -> Result<Value, String>;
+}
+
+impl MultilineKVStrToJson for String {
+    fn multiline_kv_str_to_json(&self) -> Result<Value, String> {
+        //! Convert a Key Value String into a Json Document
+        //!
+        //! ## Example usage
+        //!
+        //! ```
+        //! use std::{fs::File, io::Read};
+        //! use nparse::MultilineKVStrToJson;
+        //!
+        //! fn main() {
+        //!     let path = "data/win-systeminfo.txt";
+        //!     let mut out = String::new();
+        //!     {
+        //!         let mut f = File::open(path).unwrap();
+        //!         f.read_to_string(&mut out).unwrap();
+        //!     }
+        //!     let result = out.multiline_kv_str_to_json();
+        //!     println!("{:#?}", result.unwrap());
+        //! }
+        //! ```
+        let doc = multiline_kv_str_document::parse_multiline_kv_str(&self);
+        match doc {
+            Ok(res) => Ok(res),
             Err(e) => Err(e.to_string())
         }
     }
@@ -181,6 +215,27 @@ mod tests {
         let model_val = result.get("Model");
         assert!(model_val.is_some());
         assert_eq!(model_val.unwrap(), "142");
+    }
+
+    #[test]
+    fn test_win_systeminfo_multiline_kv_document() {
+        let out = read("data/win-systeminfo.txt");
+        let result = out.multiline_kv_str_to_json();
+        assert!(result.is_ok());
+        let result = result.unwrap();
+        assert!(result.is_object());
+        let result = result.as_object();
+        assert!(result.is_some());
+
+        let result = result.unwrap();
+        let owner = result.get("Registered Owner").unwrap().as_str().unwrap();
+        assert_eq!(owner, "test-user");
+
+        let processor = result.get("Processor(s)").unwrap().as_array();
+        assert!(processor.is_some());
+        let processor = processor.unwrap();
+        let processor = processor.iter().nth(0).unwrap().get("[01]").unwrap().as_str().unwrap();
+        assert_eq!(processor, "x64 Family 6 Model 142 Stepping 10 GenuineIntel ~2808 Mhz");
     }
 
     #[test]

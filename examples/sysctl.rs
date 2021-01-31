@@ -3,8 +3,6 @@ use nparse::DottedTreeToJson;
 use std::process::Command;
 
 fn main() {
-
-
     let cmd = "sysctl";
     let args = ["-a"];
     let output = Command::new(cmd).args(&args).output();

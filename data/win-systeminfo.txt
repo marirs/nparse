@@ -1,0 +1,56 @@
+Host Name:                 DESKTOP-G089JUF
+OS Name:                   Microsoft Windows 10 Pro
+OS Version:                10.0.19041 N/A Build 19041
+OS Manufacturer:           Microsoft Corporation
+OS Configuration:          Standalone Workstation
+OS Build Type:             Multiprocessor Free
+Registered Owner:          test-user
+Registered Organization:
+Product ID:                00330-80126-92712-AA863
+Original Install Date:     10/23/2020, 3:34:22 AM
+System Boot Time:          1/13/2021, 12:28:51 AM
+System Manufacturer:       VMware, Inc.
+System Model:              VMware Virtual Platform
+System Type:               X86-based PC
+Processor(s):              1 Processor(s) Installed.
+                           [01]: x64 Family 6 Model 142 Stepping 10 GenuineIntel ~2808 Mhz
+BIOS Version:              Phoenix Technologies LTD 6.00, 7/22/2020
+Windows Directory:         C:\Windows
+System Directory:          C:\Windows\system32
+Boot Device:               \Device\HarddiskVolume1
+System Locale:             en-gb;English (United Kingdom)
+Input Locale:              en-us;English (United States)
+Time Zone:                 (UTC-08:00) Pacific Time (US & Canada)
+Total Physical Memory:     2,047 MB
+Available Physical Memory: 839 MB
+Virtual Memory: Max Size:  3,135 MB
+Virtual Memory: Available: 1,481 MB
+Virtual Memory: In Use:    1,654 MB
+Page File Location(s):     C:\pagefile.sys
+Domain:                    WORKGROUP
+Logon Server:              \\DESKTOP-G089JUF
+Hotfix(s):                 10 Hotfix(s) Installed.
+                           [01]: KB4586876
+                           [02]: KB4537759
+                           [03]: KB4557968
+                           [04]: KB4577266
+                           [05]: KB4580325
+                           [06]: KB4584229
+                           [07]: KB4586864
+                           [08]: KB4593175
+                           [09]: KB4598481
+                           [10]: KB4598242
+Network Card(s):           2 NIC(s) Installed.
+                           [01]: Intel(R) 82574L Gigabit Network Connection
+                                 Connection Name: Ethernet0
+                                 DHCP Enabled:    Yes
+                                 DHCP Server:     10.10.10.1
+                                 IP address(es)
+                                 [01]: 10.10.10.12
+                                 [02]: fe80::c0cb:17d1:a57a:7bc8
+                                 [03]: 2002:c0a8:2:0:f836:c263:c30b:35e1
+                                 [04]: 2002:c0a8:2:0:c0cb:17d1:a57a:7bc8
+                           [02]: Bluetooth Device (Personal Area Network)
+                                 Connection Name: Bluetooth Network Connection
+                                 Status:          Media disconnected
+Hyper-V Requirements:      A hypervisor has been detected. Features required for Hyper-V will not be displayed.

@@ -6,7 +6,8 @@ Parser for various [Rust](https://www.rust-lang.org/) Strings.
 
 Parsers for:
 - Well Indent Strings (eg: `dmidecode` output)
-- KV Paris Strings (eg: `lscpu` output)
+- KV pair Strings (eg: `lscpu` output)
+- Multiline KV pair strings (eg: `systeminfo` output of windows)
 - Dotted tree Strings (eg: `sysctl` output)
 
 ### Requirements
@@ -104,6 +105,11 @@ cargo run --example sysctl
 - Parse lscpu to json
 ```bash
 cargo run --example lscpu
+```
+
+- Parse windows systeminfo to json
+```bash
+cargo run --example systeminfo
 ```
 
 ---
