@@ -17,7 +17,7 @@ Parsers for:
 ## Usage
 
 ```toml
-nparse = "0.0.3"
+nparse = "0.0.4"
 ```
 
 ### Example use
