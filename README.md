@@ -1,4 +1,4 @@
-nparse <sup>0.0.6</sup>
+nparse <sup>0.0.7</sup>
 ----------
 [![Build Status](https://travis-ci.com/marirs/nparse.svg?branch=master)](https://travis-ci.com/marirs/nparse)
 
@@ -17,7 +17,7 @@ Parsers for:
 ## Usage
 
 ```toml
-nparse = "0.0.6"
+nparse = "0.0.7"
 ```
 
 ### Example use
@@ -54,6 +54,24 @@ fn main () {
         f.read_to_string(&mut out).unwrap();
     }
     let result = out.kv_str_to_json();
+    println!("{:?}", result);
+}
+```
+
+- Converting a `K:=V` string into json
+
+```rust
+use std::{fs::File, io::Read};
+use nparse::*;
+
+fn main () {
+    let path = "data/os-release.txt";
+    let mut out = String::new();
+    {
+        let mut f = File::open(path).unwrap();
+        f.read_to_string(&mut out).unwrap();
+    }
+    let result = out.kev_str_to_json();
     println!("{:?}", result);
 }
 ```

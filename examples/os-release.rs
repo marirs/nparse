@@ -1,4 +1,4 @@
-use nparse::KVStrToJson;
+use nparse::KEVStrToJson;
 
 #[cfg(target_os = "linux")]
 fn main() {
@@ -26,7 +26,7 @@ fn main() {
         let mut f = File::open(path).unwrap();
         f.read_to_string(&mut out).unwrap();
     }
-    let result = out.kv_str_to_json();
+    let result = out.kev_str_to_json();
     let result = result.unwrap();
     let result = result.as_object().unwrap();
     println!("{:#?}", result);
