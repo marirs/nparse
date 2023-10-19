@@ -12,7 +12,7 @@ Parsers for:
 
 ### Requirements
 
-- Rust 1.36+
+- Rust 1.50+
 
 ## Usage
 
