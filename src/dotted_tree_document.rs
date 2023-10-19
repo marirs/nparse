@@ -7,7 +7,7 @@ pub(crate) fn parse_doted_tree(s: &str) -> Result<Value, String> {
 
     for line in BufReader::new(s.as_bytes()).lines() {
         if let Ok(line) = line {
-            let delim = if line.contains("=") { '=' } else { ':' };
+            let delim = if line.contains('=') { '=' } else { ':' };
             let mut kv = line.splitn(2, delim);
             let keys = kv.next().unwrap().trim();
             let v = json!(kv.next().unwrap().trim());
@@ -29,7 +29,7 @@ pub(crate) fn parse_doted_tree(s: &str) -> Result<Value, String> {
                 }
             }
         } else {
-            return Err(String::from("Could not read string"))
+            return Err(String::from("Could not read string"));
         }
     }
     Ok(obj)

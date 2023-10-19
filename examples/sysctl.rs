@@ -5,7 +5,7 @@ use std::process::Command;
 fn main() {
     let cmd = "sysctl";
     let args = ["-a"];
-    let output = Command::new(cmd).args(&args).output();
+    let output = Command::new(cmd).args(args).output();
     let output = output.unwrap();
     let output = String::from_utf8_lossy(&output.stdout[..]).to_string();
 

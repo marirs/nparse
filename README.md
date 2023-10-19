@@ -1,4 +1,4 @@
-nparse <sup>0.0.3</sup>
+nparse <sup>0.0.5</sup>
 ----------
 [![Build Status](https://travis-ci.com/marirs/nparse.svg?branch=master)](https://travis-ci.com/marirs/nparse)
 

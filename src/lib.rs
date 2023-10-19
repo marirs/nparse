@@ -1,7 +1,8 @@
+mod dotted_tree_document;
 mod indent_document;
+mod kev_str_document;
 mod kv_str_document;
 mod multiline_kv_str_document;
-mod dotted_tree_document;
 
 use serde_json::Value;
 
@@ -19,22 +20,20 @@ impl IndentToJson for String {
         //! use std::{fs::File, io::Read};
         //! use nparse::IndentToJson;
         //!
-        //! fn main() {
-        //!     let path = "data/dmidecode.txt";
-        //!     let mut out = String::new();
-        //!     {
-        //!         let mut f = File::open(path).unwrap();
-        //!         f.read_to_string(&mut out).unwrap();
-        //!     }
-        //!     let result = out.indent_to_json();
-        //!     println!("{:#?}", result.unwrap());
+        //! let path = "data/dmidecode.txt";
+        //! let mut out = String::new();
+        //! {
+        //!     let mut f = File::open(path).unwrap();
+        //!     f.read_to_string(&mut out).unwrap();
         //! }
+        //! let result = out.indent_to_json();
+        //! println!("{:#?}", result.unwrap());
         //! ```
-        let s = self.to_string() + "\n";  // adding a `\n` for safe parsing
+        let s = self.to_string() + "\n"; // adding a `\n` for safe parsing
         let doc = indent_document::parse_indent_string(&s);
         match doc {
             Ok(res) => Ok(res.1),
-            Err(e) => Err(e.to_string())
+            Err(e) => Err(e.to_string()),
         }
     }
 }
@@ -53,21 +52,19 @@ impl KVStrToJson for String {
         //! use std::{fs::File, io::Read};
         //! use nparse::KVStrToJson;
         //!
-        //! fn main() {
-        //!     let path = "data/lscpu.txt";
-        //!     let mut out = String::new();
-        //!     {
-        //!         let mut f = File::open(path).unwrap();
-        //!         f.read_to_string(&mut out).unwrap();
-        //!     }
-        //!     let result = out.kv_str_to_json();
-        //!     println!("{:#?}", result.unwrap());
-        //! }
+        //!let path = "data/lscpu.txt";
+        //!let mut out = String::new();
+        //!{
+        //!    let mut f = File::open(path).unwrap();
+        //!    f.read_to_string(&mut out).unwrap();
+        //!}
+        //!let result = out.kv_str_to_json();
+        //!println!("{:#?}", result.unwrap());
         //! ```
-        let doc = kv_str_document::parse_kv_str_string(&self);
+        let doc = kv_str_document::parse_kv_str_string(self);
         match doc {
             Ok(res) => Ok(res.1),
-            Err(e) => Err(e.to_string())
+            Err(e) => Err(e.to_string()),
         }
     }
 }
@@ -86,21 +83,19 @@ impl MultilineKVStrToJson for String {
         //! use std::{fs::File, io::Read};
         //! use nparse::MultilineKVStrToJson;
         //!
-        //! fn main() {
-        //!     let path = "data/win-systeminfo.txt";
-        //!     let mut out = String::new();
-        //!     {
-        //!         let mut f = File::open(path).unwrap();
-        //!         f.read_to_string(&mut out).unwrap();
-        //!     }
-        //!     let result = out.multiline_kv_str_to_json();
-        //!     println!("{:#?}", result.unwrap());
-        //! }
+        //!let path = "data/win-systeminfo.txt";
+        //!let mut out = String::new();
+        //!{
+        //!    let mut f = File::open(path).unwrap();
+        //!    f.read_to_string(&mut out).unwrap();
+        //!}
+        //!let result = out.multiline_kv_str_to_json();
+        //!println!("{:#?}", result.unwrap());
         //! ```
-        let doc = multiline_kv_str_document::parse_multiline_kv_str(&self);
+        let doc = multiline_kv_str_document::parse_multiline_kv_str(self);
         match doc {
             Ok(res) => Ok(res),
-            Err(e) => Err(e.to_string())
+            Err(e) => Err(e.to_string()),
         }
     }
 }
@@ -119,28 +114,54 @@ impl DottedTreeToJson for String {
         //! use std::{fs::File, io::Read};
         //! use nparse::DottedTreeToJson;
         //!
-        //! fn main() {
-        //!     let path = "data/sysctl.txt";
-        //!     let mut out = String::new();
-        //!     {
-        //!         let mut f = File::open(path).unwrap();
-        //!         f.read_to_string(&mut out).unwrap();
-        //!     }
-        //!     let result = out.dotted_tree_to_json();
-        //!     println!("{:#?}", result.unwrap());
-        //! }
+        //!let path = "data/sysctl.txt";
+        //!let mut out = String::new();
+        //!{
+        //!    let mut f = File::open(path).unwrap();
+        //!    f.read_to_string(&mut out).unwrap();
+        //!}
+        //!let result = out.dotted_tree_to_json();
+        //!println!("{:#?}", result.unwrap());
         //! ```
-        dotted_tree_document::parse_doted_tree(&self)
+        dotted_tree_document::parse_doted_tree(self)
+    }
+}
+
+pub trait KEVStrToJson {
+    fn kev_str_to_json(&self) -> Result<Value, String>;
+}
+
+impl KEVStrToJson for String {
+    fn kev_str_to_json(&self) -> Result<Value, String> {
+        //! Convert a dotted tree String into a Json Document
+        //!
+        //! ## Example usage
+        //!
+        //! ```
+        //! use std::{fs::File, io::Read};
+        //! use nparse::KEVStrToJson;
+        //!
+        //!let path = "data/os-release.txt";
+        //!let mut out = String::new();
+        //!{
+        //!   let mut f = File::open(path).unwrap();
+        //!   f.read_to_string(&mut out).unwrap();
+        //!}
+        //!let result = out.kev_str_to_json();
+        //!println!("{:#?}", result.unwrap());
+        //! ```
+        let res = kev_str_document::parse_kev_str_string(self);
+        match res {
+            Ok(res) => Ok(res.1),
+            Err(e) => Err(e.to_string()),
+        }
     }
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
-    use std::{
-        fs::File,
-        io::Read
-    };
+    use std::{fs::File, io::Read};
 
     fn read(path: &str) -> String {
         let mut out = String::new();
@@ -158,7 +179,7 @@ mod tests {
         assert!(result.is_ok());
 
         let v = result.unwrap();
-        let v = v.as_array().unwrap().into_iter().nth(1).unwrap();
+        let v = v.as_array().unwrap().iter().nth(1).unwrap();
         let parent = v.get("parent");
         assert!(parent.is_some());
 
@@ -173,7 +194,6 @@ mod tests {
         let child_name = children.iter().nth(0);
         assert!(child_name.is_some());
         assert_eq!(child_name.unwrap(), "grandchild1");
-
     }
 
     #[test]
@@ -234,8 +254,18 @@ mod tests {
         let processor = result.get("Processor(s)").unwrap().as_array();
         assert!(processor.is_some());
         let processor = processor.unwrap();
-        let processor = processor.iter().nth(0).unwrap().get("[01]").unwrap().as_str().unwrap();
-        assert_eq!(processor, "x64 Family 6 Model 142 Stepping 10 GenuineIntel ~2808 Mhz");
+        let processor = processor
+            .iter()
+            .nth(0)
+            .unwrap()
+            .get("[01]")
+            .unwrap()
+            .as_str()
+            .unwrap();
+        assert_eq!(
+            processor,
+            "x64 Family 6 Model 142 Stepping 10 GenuineIntel ~2808 Mhz"
+        );
     }
 
     #[test]
@@ -282,6 +312,26 @@ mod tests {
         let val = machdep_sub_sub_val.unwrap().as_str().unwrap().trim();
         let excepted = "GenuineIntel";
         assert_eq!(val, excepted);
+    }
 
+    #[test]
+    fn test_os_release_kev_document() {
+        let out = read("data/os-release.txt");
+        let result = out.kev_str_to_json();
+        assert!(result.is_ok());
+
+        let result = result.unwrap();
+        let result = result.as_object();
+        assert!(result.is_some());
+
+        let result = result.unwrap();
+
+        let version = result.get("VERSION");
+        assert!(version.is_some());
+        assert_eq!(version.unwrap(), "12 (bookworm)");
+
+        let bug_report_url = result.get("BUG_REPORT_URL");
+        assert!(bug_report_url.is_some());
+        assert_eq!(bug_report_url.unwrap(), "https://bugs.debian.org/");
     }
 }

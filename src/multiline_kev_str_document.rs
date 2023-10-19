@@ -1,6 +1,6 @@
 use nom::{
     bytes::complete::{tag, take_until},
-    character::complete::{line_ending, not_line_ending, space1},
+    character::complete::{line_ending, not_line_ending, space0},
     combinator::{complete, map},
     multi::separated_list0,
     sequence::{pair, separated_pair},
@@ -8,13 +8,13 @@ use nom::{
 };
 use serde_json::{json, Value};
 
-pub(crate) fn parse_kv_str_string(i: &str) -> IResult<&str, Value> {
+pub(crate) fn parse_kev_str_string(i: &str) -> IResult<&str, Value> {
     map(
         separated_list0(
             line_ending,
             complete(separated_pair(
-                take_until(":"),
-                pair(tag(":"), space1),
+                take_until("="),
+                pair(tag("="), space0),
                 not_line_ending,
             )),
         ),
