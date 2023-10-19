@@ -1,4 +1,4 @@
-nparse <sup>0.0.5</sup>
+nparse <sup>0.0.6</sup>
 ----------
 [![Build Status](https://travis-ci.com/marirs/nparse.svg?branch=master)](https://travis-ci.com/marirs/nparse)
 
@@ -17,7 +17,7 @@ Parsers for:
 ## Usage
 
 ```toml
-nparse = "0.0.4"
+nparse = "0.0.6"
 ```
 
 ### Example use
