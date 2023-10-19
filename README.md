@@ -1,4 +1,4 @@
-nparse <sup>0.0.7</sup>
+nparse <sup>0.0.8</sup>
 ----------
 [![Build Status](https://travis-ci.com/marirs/nparse.svg?branch=master)](https://travis-ci.com/marirs/nparse)
 
@@ -17,7 +17,7 @@ Parsers for:
 ## Usage
 
 ```toml
-nparse = "0.0.7"
+nparse = "0.0.8"
 ```
 
 ### Example use
@@ -58,7 +58,7 @@ fn main () {
 }
 ```
 
-- Converting a `K:=V` string into json
+- Converting a `K=V` string into json
 
 ```rust
 use std::{fs::File, io::Read};
