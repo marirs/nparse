@@ -1,6 +1,6 @@
 [package]
 name = "nparse"
-version = "0.0.9"
+version = "0.0.10"
 description = "Parser in rust for specific use-cases"
 authors = ["Marirs <marirs@gmail.com>"]
 categories = ["parsing"]
@@ -14,6 +14,7 @@ keywords = [
     "parser", "nom", "dmidecode", "lscpu", "sysctl"
 ]
 readme = "README.md"
+license = "MIT"
 license-file = "LICENSE"
 repository = "https://github.com/marirs/nparse"
 homepage = "https://github.com/marirs/nparse"
